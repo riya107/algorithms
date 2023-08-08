@@ -24,4 +24,15 @@ class FenwickTree{
         }
         return s;
     }
+
+    int find(int k){
+        int curr=0, prevSum=0;
+        for(int i=log2(N-1);i>=0;i--){
+            if(fen[curr+(1<<i)]+prevSum<k){
+                curr=curr+(1<<i);
+                prevSum+=fen[curr];
+            }
+        }
+        return curr+1;
+    }
 };
